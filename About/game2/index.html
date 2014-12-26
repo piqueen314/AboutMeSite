@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <title>game</title>
+  </head>
+<body>
+  <canvas id="my_canvas" > Canvas </canvas>
+
+<script>
+  var canvas=null;
+  var context= null;
+  var frameRate = 1000/15;
+  var frame =0;
+  
+  var assets=[
+  		"01.png",
+  		"02.png",
+  		"03.png",
+  		"04.png",
+  		"05.png",
+  		"06.png",
+  		"07.png",
+  		"08.png",
+  		];
+  		var frames=[];
+  		
+  		
+    var onImageLoad = function(){
+    console.log("Image!!!");
+    
+  };
+  
+	var setup = function() {
+	canvas= 	document.getElementById("my_canvas");
+  	context= canvas.getContext('2d');
+  	canvas.width = window.innerWidth;
+  	canvas.height=window.innerHeight;
+  	//load images here
+  	
+		for(var i=0; i<assets.length; i++){
+			frames.push(new Image());
+			frames[i].onload=onImageLoad;
+			frames[i].src =assets[i];
+		}
+		setInterval(animate,frameRate);
+	};
+	
+  	
+  	var animate = function(){
+  		//draw frames here
+  		context.clearRect(0,0,canvas.width,canvas.height);
+  		context.drawImage(frames[frame],0,0);
+  		frame=(frame+1) % frames.length;
+  		
+  	};
+
+
+
+
+
+setup();
+</script>
+</body>
+</html>
